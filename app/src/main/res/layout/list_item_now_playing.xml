@@ -7,7 +7,7 @@
 
         <variable
             name="nowplaying"
-            type="com.example.preworkshopdsc.domain.entity.NowPlaying" />
+            type="com.example.preworkshopdsc.domain.entity.TvOnTheAir" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{nowplaying.title}"
+            android:text="@{nowplaying.name}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Film Lakik takut istri" />

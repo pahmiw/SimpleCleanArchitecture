@@ -14,12 +14,32 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
     override fun getViewModelClass(): Class<HomeViewModel> = HomeViewModel::class.java
 
     private val adapter by lazy { HomeAdapter(emptyList()) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        observeMovieNowPlayingResult()
-        vm.getNowPlaying()
+        /* observeMovieNowPlayingResult()
+         vm.getNowPlaying()*/
+        observeTvOnTheAirResult()
+        vm.getTvOnTheAir()
         initRecycleView()
+    }
+
+    private fun observeTvOnTheAirResult() {
+        vm.tvOnTheAir.observe(this, Observer {
+            when (it) {
+                is Result.Loading -> {
+
+                }
+                is Result.Success -> {
+                    adapter.refreshNowPlaying(it.data)
+                }
+                is Result.Empty -> {
+
+                }
+                is Result.Error -> {
+
+                }
+            }
+        })
     }
 
     private fun observeMovieNowPlayingResult() {
@@ -29,7 +49,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
 
                 }
                 is Result.Success -> {
-                    adapter.refreshNowPlaying(it.data)
+//                    adapter.refreshNowPlaying(it.data)
                 }
                 is Result.Empty -> {
 
